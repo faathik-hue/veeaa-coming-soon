@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veeaa Studio — Your memories, beautifully made.</title>
+  <meta name="description" content="Custom photo books, canvas wall art, engraved keepsakes and Maldivian handcrafted souvenirs. Designed and made in Male', Maldives.">
+  <meta property="og:title" content="Veeaa Studio — Coming Soon">
+  <meta property="og:description" content="Your memories, beautifully made. Male', Maldives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --charcoal: #2E2E2E;
+      --cream: #F5F1EB;
+      --powder: #B8C9D6;
+      --powder-light: #dce8f0;
+      --gold: #B8956A;
+      --white: #ffffff;
+      --muted: #999;
+      --border: #e8e4de;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar { height: 4px; background: linear-gradient(90deg, var(--powder), var(--charcoal), var(--powder)); }
+    .bottom-bar { height: 3px; background: var(--powder); }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(184,201,214,0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(184,201,214,0.10) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .logo-wrap { margin-bottom: 40px; position: relative; z-index: 1; }
+    .logo-wordmark { font-family: 'Playfair Display', serif; font-size: clamp(56px, 12vw, 96px); font-weight: 500; color: var(--charcoal); letter-spacing: -1px; line-height: 1; }
+    .logo-rule { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 12px 0; }
+    .logo-rule-line { flex: 1; max-width: 60px; height: 1px; background: var(--powder); }
+    .logo-rule-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--powder); }
+    .logo-studio { font-family: 'Inter', sans-serif; font-size: clamp(10px, 2vw, 13px); font-weight: 300; letter-spacing: 12px; color: var(--charcoal); text-transform: uppercase; opacity: 0.7; }
+
+    .wave-mark { margin: 0 auto 36px; display: block; opacity: 0.85; }
+
+    .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 4.5vw, 32px); font-weight: 400; color: var(--charcoal); margin-bottom: 14px; line-height: 1.4; position: relative; z-index: 1; }
+    .sub-tagline { font-size: clamp(13px, 2.5vw, 15px); font-weight: 300; color: #888; margin-bottom: 20px; line-height: 1.9; max-width: 500px; position: relative; z-index: 1; }
+
+    .origin { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--border); border-radius: 50px; padding: 7px 18px; font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 48px; position: relative; z-index: 1; }
+    .origin-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--powder); }
+
+    .products-section { background: white; border-radius: 20px; padding: 32px 28px; max-width: 600px; width: 100%; margin-bottom: 32px; box-shadow: 0 2px 32px rgba(46,46,46,0.06); position: relative; z-index: 1; }
+    .products-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 500; color: var(--charcoal); margin-bottom: 20px; text-align: center; }
+    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .product-card { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: left; transition: border-color 0.2s; }
+    .product-card:hover { border-color: var(--powder); }
+    .product-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .product-name { font-size: 13px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
+    .product-price { font-size: 11px; color: var(--powder); font-weight: 500; letter-spacing: 0.02em; }
+    .product-card.full { grid-column: span 2; display: flex; align-items: center; gap: 16px; }
+    .product-card.full .product-icon { margin-bottom: 0; font-size: 26px; }
+
+    .notify-section { background: white; border-radius: 20px; padding: 28px 28px; max-width: 480px; width: 100%; margin-bottom: 28px; box-shadow: 0 2px 32px rgba(46,46,46,0.06); position: relative; z-index: 1; text-align: center; }
+    .notify-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500; color: var(--charcoal); margin-bottom: 6px; }
+    .notify-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+    .notify-offer { display: inline-block; background: linear-gradient(135deg, #B8956A22, #B8956A11); border: 1px solid #B8956A44; border-radius: 6px; padding: 6px 14px; font-size: 11px; color: var(--gold); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+    .form-group { display: flex; gap: 8px; }
+    .form-input { flex: 1; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color .2s; }
+    .form-input:focus { border-color: var(--powder); }
+    .form-input::placeholder { color: #ccc; }
+    .form-btn { padding: 13px 22px; background: var(--charcoal); color: var(--cream); border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .form-btn:hover { background: #444; transform: translateY(-1px); }
+    .form-note { font-size: 10px; color: #ccc; margin-top: 10px; }
+    .success-msg { display: none; font-size: 13px; color: #5a8a5a; margin-top: 12px; font-style: italic; }
+
+    .wa-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-size: 15px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 32px; transition: all .2s; box-shadow: 0 6px 20px rgba(37,211,102,0.28); position: relative; z-index: 1; }
+    .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.38); }
+    .wa-icon { font-size: 20px; }
+
+    .socials { display: flex; gap: 24px; align-items: center; margin-bottom: 48px; position: relative; z-index: 1; }
+    .social-link { display: flex; align-items: center; gap: 7px; text-decoration: none; color: #aaa; font-size: 13px; font-weight: 300; transition: color .2s; letter-spacing: 0.02em; }
+    .social-link:hover { color: var(--charcoal); }
+    .social-sep { color: var(--border); font-size: 16px; }
+
+    footer { text-align: center; padding: 20px 24px 28px; border-top: 1px solid var(--border); }
+    .footer-text { font-size: 10.5px; color: #ccc; line-height: 2; letter-spacing: 0.02em; }
+    .footer-text a { color: #bbb; text-decoration: none; transition: color .2s; }
+    .footer-text a:hover { color: var(--charcoal); }
+
+    @media (max-width: 520px) {
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .product-card.full { grid-column: span 2; }
+      .form-group { flex-direction: column; }
+      .form-btn { width: 100%; }
+      .socials { gap: 16px; }
+      .hero { padding: 48px 18px 24px; }
+    }
+    @media (max-width: 360px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .product-card.full { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<main class="hero">
+
+  <div class="logo-wrap">
+    <div class="logo-wordmark">Veeaa</div>
+    <div class="logo-rule">
+      <div class="logo-rule-line"></div>
+      <div class="logo-rule-dot"></div>
+      <div class="logo-rule-line"></div>
+    </div>
+    <div class="logo-studio">Studio</div>
+  </div>
+
+  <svg class="wave-mark" width="100" height="36" viewBox="0 0 100 36" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 12 Q18 3 30 9 Q42 15 54 5 Q66 -5 78 4 Q90 13 96 8" fill="none" stroke="#2E2E2E" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M4 24 Q18 14 32 20 Q46 26 58 16 Q70 6 82 14 Q94 22 98 18" fill="none" stroke="#B8C9D6" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+
+  <p class="tagline">Your memories, beautifully made.</p>
+  <p class="sub-tagline">Custom photo books · Canvas wall art · Engraved keepsakes<br>Maldivian handcrafted souvenirs · Worldwide shipping</p>
+
+  <div class="origin">
+    <div class="origin-dot"></div>
+    Designed &amp; made in Male', Maldives 🇲🇻
+    <div class="origin-dot"></div>
+  </div>
+
+  <div class="products-section">
+    <div class="products-title">What we make</div>
+    <div class="products-grid">
+      <div class="product-card"><span class="product-icon">📖</span><div class="product-name">Memory Books</div><div class="product-price">from MVR 1,800</div></div>
+      <div class="product-card"><span class="product-icon">🖼️</span><div class="product-name">Canvas Prints</div><div class="product-price">from MVR 750</div></div>
+      <div class="product-card"><span class="product-icon">✍️</span><div class="product-name">Engraved Frames</div><div class="product-price">from MVR 550</div></div>
+      <div class="product-card"><span class="product-icon">🌊</span><div class="product-name">Maldivian Souvenirs</div><div class="product-price">from MVR 450</div></div>
+      <div class="product-card full"><span class="product-icon">⭐</span><div><div class="product-name">Honeymoon Memory Set</div><div class="product-price">Book + Canvas + Gift Packed · MVR 4,500</div></div></div>
+    </div>
+  </div>
+
+  <div class="notify-section">
+    <div class="notify-offer">✦ First 50 customers — 30% off</div>
+    <div class="notify-title">Be the first to know</div>
+    <div class="notify-sub">Leave your email and we'll notify you the moment we open.<br>One message. No spam.</div>
+    <div class="form-group">
+      <input class="form-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
+      <button class="form-btn" onclick="handleSignup()">Notify me</button>
+    </div>
+    <div class="form-note">Unsubscribe anytime.</div>
+    <div class="success-msg" id="successMsg">✓ You're on the list. We'll be in touch soon. ✨</div>
+  </div>
+
+  <a href="https://wa.me/9609115583?text=Hi%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20Veeaa%20Studio!" class="wa-btn" target="_blank" rel="noopener">
+    <span class="wa-icon">💬</span>
+    Order on WhatsApp · +960 911-5583
+  </a>
+
+  <div class="socials">
+    <a href="https://instagram.com/veeaastudio" class="social-link" target="_blank" rel="noopener">📷 @veeaastudio</a>
+    <span class="social-sep">·</span>
+    <a href="https://facebook.com/VeeaaStudio" class="social-link" target="_blank" rel="noopener">📘 Veeaa Studio</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-text">
+    Veeaa Private Limited &nbsp;·&nbsp; Male', Maldives &nbsp;·&nbsp; Reg. C16722024<br>
+    <a href="mailto:faathik@icloud.com">faathik@icloud.com</a> &nbsp;·&nbsp;
+    <a href="https://wa.me/9609115583">+960 911-5583</a> &nbsp;·&nbsp;
+    <a href="https://instagram.com/veeaastudio">@veeaastudio</a>
+  </div>
+</footer>
+
+<div class="bottom-bar"></div>
+
+<script>
+  function handleSignup() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('emailInput').style.borderColor = '#e88';
+      document.getElementById('emailInput').focus();
+      return;
+    }
+    const msg = encodeURIComponent(`Hi Veeaa Studio! I'd like to be notified when you launch. My email: ${email}`);
+    window.open(`https://wa.me/9609115583?text=${msg}`, '_blank');
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('emailInput').style.borderColor = '#B8C9D6';
+  }
+  document.getElementById('emailInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') handleSignup();
+  });
+</script>
+
+</body>
+</html>
