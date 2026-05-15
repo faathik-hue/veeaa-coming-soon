@@ -16,7 +16,6 @@
       --charcoal: #2E2E2E;
       --cream: #F5F1EB;
       --powder: #B8C9D6;
-      --powder-light: #dce8f0;
       --gold: #B8956A;
       --white: #ffffff;
       --muted: #999;
@@ -33,193 +32,1265 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
     .top-bar { height: 4px; background: linear-gradient(90deg, var(--powder), var(--charcoal), var(--powder)); }
     .bottom-bar { height: 3px; background: var(--powder); }
 
+    /* ── PAGE FADE IN ── */
+    .page-wrap {
+      opacity: 0;
+      animation: fadeInPage 0.8s ease 0.1s forwards;
+    }
+    @keyframes fadeInPage {
+      to { opacity: 1; }
+    }
+
+    /* ── HERO ── */
     .hero {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 64px 24px 32px;
+      padding: 56px 24px 8px;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle at 20% 50%, rgba(184,201,214,0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(184,201,214,0.10) 0%, transparent 40%);
+      background:
+        radial-gradient(circle at 15% 60%, rgba(184,201,214,0.18) 0%, transparent 55%),
+        radial-gradient(circle at 85% 20%, rgba(184,149,106,0.08) 0%, transparent 45%);
       pointer-events: none;
     }
 
-    .logo-wrap { margin-bottom: 40px; position: relative; z-index: 1; }
-    .logo-wordmark { font-family: 'Playfair Display', serif; font-size: clamp(56px, 12vw, 96px); font-weight: 500; color: var(--charcoal); letter-spacing: -1px; line-height: 1; }
-    .logo-rule { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 12px 0; }
+    /* ── LOGO ── */
+    .logo-wrap { margin-bottom: 28px; position: relative; z-index: 1; }
+    .logo-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 11vw, 90px);
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .logo-rule { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 10px 0; }
     .logo-rule-line { flex: 1; max-width: 60px; height: 1px; background: var(--powder); }
     .logo-rule-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--powder); }
-    .logo-studio { font-family: 'Inter', sans-serif; font-size: clamp(10px, 2vw, 13px); font-weight: 300; letter-spacing: 12px; color: var(--charcoal); text-transform: uppercase; opacity: 0.7; }
+    .logo-studio {
+      font-size: clamp(10px, 2vw, 12px);
+      font-weight: 300;
+      letter-spacing: 12px;
+      color: var(--charcoal);
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
 
-    .wave-mark { margin: 0 auto 36px; display: block; opacity: 0.85; }
+    .wave-mark { margin: 0 auto 24px; display: block; opacity: 0.8; }
 
-    .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 4.5vw, 32px); font-weight: 400; color: var(--charcoal); margin-bottom: 14px; line-height: 1.4; position: relative; z-index: 1; }
-    .sub-tagline { font-size: clamp(13px, 2.5vw, 15px); font-weight: 300; color: #888; margin-bottom: 20px; line-height: 1.9; max-width: 500px; position: relative; z-index: 1; }
+    /* ── BADGE ── */
+    .coming-soon-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #2E2E2E, #444);
+      color: var(--cream);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 10px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 16px; position: relative; z-index: 1;
+      box-shadow: 0 4px 16px rgba(46,46,46,0.2);
+    }
+    .badge-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--powder);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.75); } }
 
-    .origin { display: inline-flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--border); border-radius: 50px; padding: 7px 18px; font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 48px; position: relative; z-index: 1; }
-    .origin-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--powder); }
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 4.5vw, 30px);
+      color: var(--charcoal); margin-bottom: 10px; line-height: 1.4;
+      position: relative; z-index: 1;
+    }
+    .sub-tagline {
+      font-size: clamp(12px, 2.5vw, 14px); font-weight: 300; color: #888;
+      margin-bottom: 18px; line-height: 1.9; max-width: 480px;
+      position: relative; z-index: 1;
+    }
+    .origin {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--border); border-radius: 50px;
+      padding: 6px 16px; font-size: 12px; color: var(--muted); letter-spacing: 0.04em;
+      margin-bottom: 40px; position: relative; z-index: 1;
+    }
+    .origin-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--powder); }
 
-    .products-section { background: white; border-radius: 20px; padding: 32px 28px; max-width: 600px; width: 100%; margin-bottom: 32px; box-shadow: 0 2px 32px rgba(46,46,46,0.06); position: relative; z-index: 1; }
-    .products-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 500; color: var(--charcoal); margin-bottom: 20px; text-align: center; }
-    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .product-card { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: left; transition: border-color 0.2s; }
-    .product-card:hover { border-color: var(--powder); }
-    .product-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-    .product-name { font-size: 13px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
-    .product-price { font-size: 11px; color: var(--powder); font-weight: 500; letter-spacing: 0.02em; }
-    .product-card.full { grid-column: span 2; display: flex; align-items: center; gap: 16px; }
-    .product-card.full .product-icon { margin-bottom: 0; font-size: 26px; }
+    /* ════════════════════════════════════════
+       SCROLLING PHOTO STRIP
+    ════════════════════════════════════════ */
+    .strip-wrap {
+      width: 100%; overflow: hidden; padding: 0 0 48px;
+      position: relative;
+    }
+    /* Fade edges */
+    .strip-wrap::before, .strip-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .strip-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+    .strip-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
 
-    .notify-section { background: white; border-radius: 20px; padding: 28px 28px; max-width: 480px; width: 100%; margin-bottom: 28px; box-shadow: 0 2px 32px rgba(46,46,46,0.06); position: relative; z-index: 1; text-align: center; }
-    .notify-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500; color: var(--charcoal); margin-bottom: 6px; }
-    .notify-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-    .notify-offer { display: inline-block; background: linear-gradient(135deg, #B8956A22, #B8956A11); border: 1px solid #B8956A44; border-radius: 6px; padding: 6px 14px; font-size: 11px; color: var(--gold); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
-    .form-group { display: flex; gap: 8px; }
-    .form-input { flex: 1; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color .2s; }
-    .form-input:focus { border-color: var(--powder); }
-    .form-input::placeholder { color: #ccc; }
-    .form-btn { padding: 13px 22px; background: var(--charcoal); color: var(--cream); border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; transition: all .2s; white-space: nowrap; }
-    .form-btn:hover { background: #444; transform: translateY(-1px); }
-    .form-note { font-size: 10px; color: #ccc; margin-top: 10px; }
-    .success-msg { display: none; font-size: 13px; color: #5a8a5a; margin-top: 12px; font-style: italic; }
+    .strip-track {
+      display: flex; gap: 16px;
+      width: max-content;
+      animation: scrollLeft 36s linear infinite;
+    }
+    .strip-track:hover { animation-play-state: paused; }
 
-    .wa-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-size: 15px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 32px; transition: all .2s; box-shadow: 0 6px 20px rgba(37,211,102,0.28); position: relative; z-index: 1; }
-    .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.38); }
-    .wa-icon { font-size: 20px; }
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-    .socials { display: flex; gap: 24px; align-items: center; margin-bottom: 48px; position: relative; z-index: 1; }
-    .social-link { display: flex; align-items: center; gap: 7px; text-decoration: none; color: #aaa; font-size: 13px; font-weight: 300; transition: color .2s; letter-spacing: 0.02em; }
-    .social-link:hover { color: var(--charcoal); }
-    .social-sep { color: var(--border); font-size: 16px; }
+    .photo-card {
+      width: 200px; height: 270px; border-radius: 18px; overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(46,46,46,0.12), 0 2px 8px rgba(46,46,46,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .photo-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(46,46,46,0.18);
+    }
+    .photo-card svg { width: 100%; height: 100%; display: block; }
 
-    footer { text-align: center; padding: 20px 24px 28px; border-top: 1px solid var(--border); }
-    .footer-text { font-size: 10.5px; color: #ccc; line-height: 2; letter-spacing: 0.02em; }
-    .footer-text a { color: #bbb; text-decoration: none; transition: color .2s; }
+    /* ── PHOTO LABEL ── */
+    .photo-label-wrap {
+      position: relative; width: 200px; text-align: center;
+      flex-shrink: 0;
+    }
+    /* We'll just put labels inside SVG */
+
+    /* ════════════════════════════════════════
+       MAIN CONTENT
+    ════════════════════════════════════════ */
+    .content {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 24px 48px;
+    }
+
+    /* ── PRODUCTS ── */
+    .products-section {
+      background: white; border-radius: 24px; padding: 32px 28px;
+      max-width: 620px; width: 100%; margin-bottom: 24px;
+      box-shadow: 0 4px 40px rgba(46,46,46,0.07);
+    }
+    .products-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 500; color: var(--charcoal);
+      margin-bottom: 4px; text-align: center;
+    }
+    .products-subtitle {
+      font-size: 11px; color: var(--muted); text-align: center;
+      margin-bottom: 24px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+
+    /* product card with illustration */
+    .product-card {
+      border: 1.5px solid var(--border); border-radius: 14px;
+      overflow: hidden; transition: all 0.25s ease; cursor: default;
+    }
+    .product-card:hover {
+      border-color: var(--powder);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(184,201,214,0.3);
+    }
+    .product-thumb { height: 110px; overflow: hidden; }
+    .product-thumb svg { width: 100%; height: 100%; display: block; }
+    .product-info { padding: 12px 12px 14px; background: var(--cream); }
+    .product-name { font-size: 12px; font-weight: 400; color: var(--charcoal); line-height: 1.4; }
+
+    .product-card.featured {
+      grid-column: span 3;
+      display: flex; flex-direction: row; align-items: stretch;
+      background: linear-gradient(135deg, #F0EBE3, #E8E0D5);
+    }
+    .product-card.featured .product-thumb { width: 140px; height: auto; flex-shrink: 0; }
+    .product-card.featured .product-info {
+      background: transparent; padding: 20px 20px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .product-card.featured .product-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .product-card.featured .product-desc { font-size: 11px; color: var(--muted); }
+
+    /* ── SURVEY ── */
+    .survey-section {
+      background: white; border-radius: 24px; padding: 32px 28px;
+      max-width: 480px; width: 100%; margin-bottom: 24px;
+      box-shadow: 0 4px 40px rgba(46,46,46,0.07); text-align: center;
+    }
+    .survey-offer {
+      display: inline-block;
+      background: linear-gradient(135deg, #B8956A22, #B8956A11);
+      border: 1px solid #B8956A44; border-radius: 6px;
+      padding: 5px 14px; font-size: 11px; color: var(--gold);
+      font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .survey-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px; font-weight: 500; color: var(--charcoal); margin-bottom: 8px;
+    }
+    .survey-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; line-height: 1.7; }
+    .survey-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--charcoal); color: var(--cream); text-decoration: none;
+      padding: 15px 32px; border-radius: 12px;
+      font-size: 14px; font-weight: 400; letter-spacing: 0.03em;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(46,46,46,0.18);
+    }
+    .survey-btn:hover { background: #444; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,46,46,0.22); }
+    .survey-arrow { transition: transform 0.2s; }
+    .survey-btn:hover .survey-arrow { transform: translateX(4px); }
+    .survey-note { font-size: 11px; color: #ccc; margin-top: 12px; }
+
+    /* ── SOCIAL ── */
+    .social-section {
+      background: white; border-radius: 24px; padding: 28px 32px;
+      max-width: 480px; width: 100%; margin-bottom: 24px;
+      box-shadow: 0 4px 40px rgba(46,46,46,0.07); text-align: center;
+    }
+    .social-eyebrow { font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+    .social-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 500; color: var(--charcoal); margin-bottom: 6px;
+    }
+    .social-sub { font-size: 12px; color: var(--muted); margin-bottom: 22px; line-height: 1.7; }
+    .social-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+      padding: 12px 22px; border-radius: 50px;
+      font-size: 13px; font-weight: 400; letter-spacing: 0.02em; transition: all 0.2s;
+    }
+    .social-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .social-btn.instagram {
+      background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+      color: white; box-shadow: 0 4px 16px rgba(238,42,123,0.3);
+    }
+    .social-btn.instagram:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(238,42,123,0.4); }
+    .social-btn.facebook {
+      background: #1877F2; color: white; box-shadow: 0 4px 16px rgba(24,119,242,0.3);
+    }
+    .social-btn.facebook:hover { transform: translateY(-2px); background: #166fe5; box-shadow: 0 8px 24px rgba(24,119,242,0.4); }
+
+    /* ── WHATSAPP ── */
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: white; text-decoration: none;
+      padding: 16px 32px; border-radius: 50px;
+      font-size: 15px; font-weight: 400; letter-spacing: 0.02em;
+      margin-bottom: 8px; transition: all 0.2s;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.28);
+    }
+    .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.4); }
+
+    footer {
+      text-align: center; padding: 24px 24px 32px; border-top: 1px solid var(--border);
+    }
+    .footer-text { font-size: 10.5px; color: #ccc; line-height: 2.2; letter-spacing: 0.02em; }
+    .footer-text a { color: #bbb; text-decoration: none; transition: color 0.2s; }
     .footer-text a:hover { color: var(--charcoal); }
 
-    @media (max-width: 520px) {
-      .products-grid { grid-template-columns: 1fr 1fr; }
-      .product-card.full { grid-column: span 2; }
-      .form-group { flex-direction: column; }
-      .form-btn { width: 100%; }
-      .socials { gap: 16px; }
-      .hero { padding: 48px 18px 24px; }
+    @media (max-width: 560px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-card.featured { grid-column: span 2; }
+      .social-btns { flex-direction: column; align-items: center; }
+      .social-btn { width: 100%; justify-content: center; }
     }
-    @media (max-width: 360px) {
-      .products-grid { grid-template-columns: 1fr; }
-      .product-card.full { grid-column: span 1; }
+    @media (max-width: 380px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
 <div class="top-bar"></div>
+<div class="page-wrap">
 
-<main class="hero">
+<main>
 
-  <div class="logo-wrap">
-    <div class="logo-wordmark">Veeaa</div>
-    <div class="logo-rule">
-      <div class="logo-rule-line"></div>
-      <div class="logo-rule-dot"></div>
-      <div class="logo-rule-line"></div>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="logo-wrap">
+      <div class="logo-wordmark">Veeaa</div>
+      <div class="logo-rule">
+        <div class="logo-rule-line"></div>
+        <div class="logo-rule-dot"></div>
+        <div class="logo-rule-line"></div>
+      </div>
+      <div class="logo-studio">Studio</div>
     </div>
-    <div class="logo-studio">Studio</div>
-  </div>
 
-  <svg class="wave-mark" width="100" height="36" viewBox="0 0 100 36" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 12 Q18 3 30 9 Q42 15 54 5 Q66 -5 78 4 Q90 13 96 8" fill="none" stroke="#2E2E2E" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M4 24 Q18 14 32 20 Q46 26 58 16 Q70 6 82 14 Q94 22 98 18" fill="none" stroke="#B8C9D6" stroke-width="1.6" stroke-linecap="round"/>
-  </svg>
+    <svg class="wave-mark" width="96" height="34" viewBox="0 0 100 36" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 12 Q18 3 30 9 Q42 15 54 5 Q66 -5 78 4 Q90 13 96 8" fill="none" stroke="#2E2E2E" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M4 24 Q18 14 32 20 Q46 26 58 16 Q70 6 82 14 Q94 22 98 18" fill="none" stroke="#B8C9D6" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
 
-  <p class="tagline">Your memories, beautifully made.</p>
-  <p class="sub-tagline">Custom photo books · Canvas wall art · Engraved keepsakes<br>Maldivian handcrafted souvenirs · Worldwide shipping</p>
-
-  <div class="origin">
-    <div class="origin-dot"></div>
-    Designed &amp; made in Male', Maldives 🇲🇻
-    <div class="origin-dot"></div>
-  </div>
-
-  <div class="products-section">
-    <div class="products-title">What we make</div>
-    <div class="products-grid">
-      <div class="product-card"><span class="product-icon">📖</span><div class="product-name">Memory Books</div><div class="product-price">from MVR 1,800</div></div>
-      <div class="product-card"><span class="product-icon">🖼️</span><div class="product-name">Canvas Prints</div><div class="product-price">from MVR 750</div></div>
-      <div class="product-card"><span class="product-icon">✍️</span><div class="product-name">Engraved Frames</div><div class="product-price">from MVR 550</div></div>
-      <div class="product-card"><span class="product-icon">🌊</span><div class="product-name">Maldivian Souvenirs</div><div class="product-price">from MVR 450</div></div>
-      <div class="product-card full"><span class="product-icon">⭐</span><div><div class="product-name">Honeymoon Memory Set</div><div class="product-price">Book + Canvas + Gift Packed · MVR 4,500</div></div></div>
+    <div class="coming-soon-badge">
+      <div class="badge-dot"></div>
+      Opening Soon
+      <div class="badge-dot"></div>
     </div>
-  </div>
 
-  <div class="notify-section">
-    <div class="notify-offer">✦ First 50 customers — 30% off</div>
-    <div class="notify-title">Be the first to know</div>
-    <div class="notify-sub">Leave your email and we'll notify you the moment we open.<br>One message. No spam.</div>
-    <div class="form-group">
-      <input class="form-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
-      <button class="form-btn" onclick="handleSignup()">Notify me</button>
+    <p class="tagline">Your memories, beautifully made.</p>
+    <p class="sub-tagline">
+      Custom photo books · Canvas wall art · Engraved keepsakes<br>
+      Maldivian handcrafted souvenirs · Worldwide shipping
+    </p>
+    <div class="origin">
+      <div class="origin-dot"></div>
+      Designed &amp; made in Male', Maldives 🇲🇻
+      <div class="origin-dot"></div>
     </div>
-    <div class="form-note">Unsubscribe anytime.</div>
-    <div class="success-msg" id="successMsg">✓ You're on the list. We'll be in touch soon. ✨</div>
-  </div>
+  </section>
 
-  <a href="https://wa.me/9609115583?text=Hi%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20Veeaa%20Studio!" class="wa-btn" target="_blank" rel="noopener">
-    <span class="wa-icon">💬</span>
-    Order on WhatsApp · +960 911-5583
-  </a>
+  <!-- ════════════════════════════════════════
+       SCROLLING PHOTO STRIP
+  ════════════════════════════════════════ -->
+  <div class="strip-wrap">
+    <div class="strip-track">
 
-  <div class="socials">
-    <a href="https://instagram.com/veeaastudio" class="social-link" target="_blank" rel="noopener">📷 @veeaastudio</a>
-    <span class="social-sep">·</span>
-    <a href="https://facebook.com/VeeaaStudio" class="social-link" target="_blank" rel="noopener">📘 Veeaa Studio</a>
-  </div>
+      <!-- Set 1 — will be duplicated for infinite loop -->
+
+      <!-- 1. Photo Album Book -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <!-- Warm cream studio bg -->
+          <defs>
+            <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#EDE6DB"/>
+              <stop offset="100%" stop-color="#D9CFC2"/>
+            </linearGradient>
+            <linearGradient id="page1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FDFAF6"/>
+              <stop offset="100%" stop-color="#F0EBE3"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg1)"/>
+          <!-- Soft light splash -->
+          <ellipse cx="160" cy="40" rx="70" ry="60" fill="rgba(255,255,255,0.18)"/>
+          <!-- Book body -->
+          <rect x="28" y="50" width="144" height="160" rx="6" fill="#2E2E2E" opacity="0.9"/>
+          <!-- Spine detail -->
+          <rect x="28" y="50" width="18" height="160" rx="4" fill="#1a1a1a"/>
+          <line x1="36" y1="68" x2="36" y2="200" stroke="#B8956A" stroke-width="1" opacity="0.6"/>
+          <!-- Left page -->
+          <rect x="46" y="56" width="58" height="148" fill="url(#page1)" rx="2"/>
+          <!-- Right page -->
+          <rect x="106" y="56" width="58" height="148" fill="url(#page1)" rx="2"/>
+          <!-- Center gutter shadow -->
+          <rect x="101" y="56" width="8" height="148" fill="rgba(46,46,46,0.08)"/>
+          <!-- Photos on left page -->
+          <rect x="52" y="66" width="46" height="34" rx="3" fill="#B8C9D6" opacity="0.9"/>
+          <rect x="54" y="68" width="42" height="30" rx="2" fill="#9BB5C6"/>
+          <!-- tiny ocean scene inside photo -->
+          <rect x="54" y="83" width="42" height="15" rx="1" fill="#7BAFC4"/>
+          <ellipse cx="75" cy="83" rx="10" ry="6" fill="#E8F0F5" opacity="0.7"/>
+          <rect x="52" y="106" width="22" height="30" rx="3" fill="#B8956A" opacity="0.8"/>
+          <rect x="54" y="108" width="18" height="26" rx="2" fill="#C9A478"/>
+          <!-- heart shape in photo -->
+          <text x="62" y="124" font-size="11" fill="rgba(255,255,255,0.8)" font-family="serif">♥</text>
+          <rect x="78" y="106" width="20" height="30" rx="3" fill="#D9CFC2"/>
+          <rect x="80" y="108" width="16" height="26" rx="2" fill="#C9BFB4"/>
+          <text x="86" y="125" font-size="9" fill="#9A8E84">🌿</text>
+          <rect x="52" y="141" width="46" height="12" rx="2" fill="rgba(46,46,46,0.06)"/>
+          <rect x="52" y="156" width="30" height="3" rx="1" fill="rgba(46,46,46,0.08)"/>
+          <rect x="52" y="162" width="20" height="3" rx="1" fill="rgba(46,46,46,0.06)"/>
+          <!-- Photos on right page -->
+          <rect x="112" y="66" width="46" height="52" rx="3" fill="#D4C5B2" opacity="0.9"/>
+          <rect x="114" y="68" width="42" height="48" rx="2" fill="#C9B8A0"/>
+          <!-- couple silhouette -->
+          <ellipse cx="130" cy="80" rx="8" ry="8" fill="#8A7A6A"/>
+          <ellipse cx="148" cy="82" rx="7" ry="7" fill="#7A6A5A"/>
+          <rect x="124" y="86" width="12" height="22" rx="3" fill="#8A7A6A"/>
+          <rect x="141" y="88" width="10" height="20" rx="3" fill="#7A6A5A"/>
+          <!-- sunset bg in photo -->
+          <rect x="114" y="95" width="42" height="21" rx="1" fill="#D4956A" opacity="0.5"/>
+          <rect x="112" y="124" width="22" height="22" rx="3" fill="#B8C9D6" opacity="0.7"/>
+          <text x="120" y="138" font-size="10" fill="#7A9BB0">🏖</text>
+          <rect x="138" y="124" width="20" height="22" rx="3" fill="#E8D5C0" opacity="0.8"/>
+          <text x="145" y="138" font-size="10" fill="#9A8060">✈</text>
+          <rect x="112" y="152" width="46" height="16" rx="2" fill="rgba(46,46,46,0.05)"/>
+          <rect x="112" y="171" width="28" height="3" rx="1" fill="rgba(46,46,46,0.07)"/>
+          <rect x="112" y="177" width="18" height="3" rx="1" fill="rgba(46,46,46,0.05)"/>
+          <!-- Ribbon bookmark -->
+          <rect x="162" y="50" width="6" height="20" fill="#B8956A"/>
+          <polygon points="162,70 168,70 165,76" fill="#B8956A"/>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Photo Album</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MEMORY BOOKS</text>
+        </svg>
+      </div>
+
+      <!-- 2. Honeymoon / Wedding Frame -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F0E8E0"/>
+              <stop offset="100%" stop-color="#E0D4C8"/>
+            </linearGradient>
+            <linearGradient id="sunset2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F4A060"/>
+              <stop offset="40%" stop-color="#E8756A"/>
+              <stop offset="100%" stop-color="#7AB5C8"/>
+            </linearGradient>
+            <linearGradient id="wood2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8B6B4A"/>
+              <stop offset="50%" stop-color="#A07850"/>
+              <stop offset="100%" stop-color="#8B6B4A"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg2)"/>
+          <!-- soft glow -->
+          <ellipse cx="100" cy="120" rx="80" ry="70" fill="rgba(255,240,220,0.4)"/>
+          <!-- wooden frame outer -->
+          <rect x="30" y="38" width="140" height="162" rx="8" fill="url(#wood2)"/>
+          <!-- wood grain lines -->
+          <line x1="34" y1="42" x2="34" y2="196" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <line x1="40" y1="42" x2="40" y2="196" stroke="rgba(0,0,0,0.06)" stroke-width="0.8"/>
+          <line x1="160" y1="42" x2="160" y2="196" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <!-- frame inner bevel -->
+          <rect x="38" y="46" width="124" height="146" rx="4" fill="#7A5E3C"/>
+          <!-- frame mat -->
+          <rect x="42" y="50" width="116" height="138" rx="2" fill="#F5F1EB"/>
+          <!-- photo inside frame -->
+          <rect x="50" y="58" width="100" height="112" rx="2" fill="url(#sunset2)"/>
+          <!-- ocean waves -->
+          <path d="M50 148 Q65 142 80 148 Q95 154 110 148 Q125 142 140 148 Q150 152 150 158 L50 158 Z" fill="rgba(100,180,210,0.6)"/>
+          <path d="M50 156 Q70 150 90 156 Q110 162 130 156 Q142 152 150 160 L50 160 Z" fill="rgba(80,160,200,0.8)"/>
+          <!-- sun / moon glow -->
+          <circle cx="100" cy="90" r="20" fill="rgba(255,200,100,0.35)"/>
+          <circle cx="100" cy="92" r="14" fill="rgba(255,180,60,0.7)"/>
+          <!-- silhouette couple on beach -->
+          <ellipse cx="82" cy="136" rx="6" ry="6" fill="#3A2A1A"/>
+          <rect x="77" y="140" width="9" height="18" rx="3" fill="#3A2A1A"/>
+          <ellipse cx="96" cy="138" rx="5" ry="5" fill="#2E1E10"/>
+          <rect x="91" y="142" width="8" height="16" rx="3" fill="#2E1E10"/>
+          <!-- joined hands -->
+          <path d="M86 150 Q91 153 91 148" stroke="#4A3020" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- palm tree -->
+          <line x1="130" y1="160" x2="126" y2="110" stroke="#3A2A1A" stroke-width="3"/>
+          <path d="M126 112 Q115 100 108 108 Q120 106 126 114" fill="#2A4A1A"/>
+          <path d="M126 112 Q138 98 145 105 Q133 106 126 114" fill="#2A4A1A"/>
+          <path d="M126 112 Q118 104 112 112 Q120 108 126 116" fill="#355A22"/>
+          <!-- engraving text on mat -->
+          <text x="100" y="185" text-anchor="middle" font-family="Georgia, serif" font-size="7.5" fill="#A07850" font-style="italic">Forever &amp; Always</text>
+          <!-- corner flourishes on frame -->
+          <text x="35" y="52" font-size="10" fill="rgba(255,220,160,0.6)">❧</text>
+          <text x="156" y="52" font-size="10" fill="rgba(255,220,160,0.6)" transform="scale(-1,1) translate(-200,0)">❧</text>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Honeymoon Frame</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8956A" letter-spacing="2">ENGRAVED FRAMES</text>
+        </svg>
+      </div>
+
+      <!-- 3. Kids Memory Album -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F0F4F8"/>
+              <stop offset="100%" stop-color="#DDE8F0"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg3)"/>
+          <!-- Confetti dots -->
+          <circle cx="20" cy="25" r="5" fill="#F4A060" opacity="0.7"/>
+          <circle cx="175" cy="18" r="4" fill="#B8C9D6" opacity="0.8"/>
+          <circle cx="155" cy="220" r="6" fill="#F9C84A" opacity="0.6"/>
+          <circle cx="18" cy="210" r="4" fill="#B8956A" opacity="0.5"/>
+          <circle cx="185" cy="200" r="5" fill="#A8D0B0" opacity="0.7"/>
+          <rect x="12" y="60" width="6" height="6" rx="1" fill="#E88080" opacity="0.6" transform="rotate(20 15 63)"/>
+          <rect x="178" y="80" width="6" height="6" rx="1" fill="#8EC8A8" opacity="0.6" transform="rotate(15 181 83)"/>
+          <!-- Album cover -->
+          <rect x="28" y="42" width="144" height="170" rx="10" fill="#4A8FBF"/>
+          <!-- Album texture -->
+          <rect x="30" y="44" width="140" height="166" rx="9" fill="#5A9FD0" opacity="0.4"/>
+          <!-- Album title area -->
+          <rect x="40" y="54" width="120" height="44" rx="6" fill="rgba(255,255,255,0.25)"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="white" font-style="italic">My First Years</text>
+          <text x="100" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)" letter-spacing="2">MEMORY ALBUM</text>
+          <!-- Baby star decoration -->
+          <text x="100" y="112" text-anchor="middle" font-size="22">⭐</text>
+          <!-- Mini polaroid photos sticking out -->
+          <rect x="44" y="118" width="44" height="52" rx="3" fill="white" transform="rotate(-6 66 144)"/>
+          <rect x="47" y="121" width="38" height="34" rx="2" fill="#F4D0A8" transform="rotate(-6 66 138)"/>
+          <!-- baby feet sketch inside photo -->
+          <ellipse cx="59" cy="133" rx="6" ry="8" fill="#E8B888" transform="rotate(-6 66 138)"/>
+          <ellipse cx="72" cy="131" rx="5" ry="7" fill="#E8B888" transform="rotate(-6 66 138)"/>
+          <text x="52" y="156" font-size="7" fill="#888" transform="rotate(-6 66 156)">Baby's first!</text>
+
+          <rect x="110" y="122" width="44" height="52" rx="3" fill="white" transform="rotate(8 132 148)"/>
+          <rect x="113" y="125" width="38" height="34" rx="2" fill="#C8E0D0" transform="rotate(8 132 142)"/>
+          <!-- stars/moon in photo -->
+          <text x="122" y="142" font-size="14" transform="rotate(8 132 142)">🌙</text>
+          <text x="138" y="148" font-size="10" transform="rotate(8 132 142)">✨</text>
+          <text x="120" y="170" font-size="7" fill="#888" transform="rotate(8 132 170)">Sweet dreams</text>
+          <!-- Ribbon and bow -->
+          <line x1="100" y1="106" x2="100" y2="212" stroke="#F9C84A" stroke-width="3" opacity="0.7"/>
+          <!-- Sticker stars on cover -->
+          <text x="44" y="108" font-size="12">🌟</text>
+          <text x="148" y="106" font-size="10">✨</text>
+          <!-- Page edges showing it's a thick book -->
+          <rect x="170" y="52" width="6" height="158" rx="2" fill="#E8E4DE"/>
+          <line x1="170" y1="60" x2="176" y2="60" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+          <line x1="170" y1="80" x2="176" y2="80" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+          <line x1="170" y1="100" x2="176" y2="100" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+          <line x1="170" y1="120" x2="176" y2="120" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+          <line x1="170" y1="140" x2="176" y2="140" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Kids Memory Album</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MEMORY BOOKS</text>
+        </svg>
+      </div>
+
+      <!-- 4. Canvas Print — Maldives Ocean Scene -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wall4" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#EDE8E2"/>
+              <stop offset="100%" stop-color="#E0DCD4"/>
+            </linearGradient>
+            <linearGradient id="ocean4" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#C8E8F4"/>
+              <stop offset="30%" stop-color="#88C8E0"/>
+              <stop offset="70%" stop-color="#48A8CC"/>
+              <stop offset="100%" stop-color="#2888A8"/>
+            </linearGradient>
+            <linearGradient id="sky4" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F8E8C8"/>
+              <stop offset="60%" stop-color="#F4C080"/>
+              <stop offset="100%" stop-color="#E89060"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#wall4)"/>
+          <!-- shadow under canvas -->
+          <ellipse cx="100" cy="210" rx="70" ry="6" fill="rgba(0,0,0,0.08)"/>
+          <!-- canvas frame shadow -->
+          <rect x="33" y="38" width="134" height="162" rx="3" fill="rgba(0,0,0,0.12)" transform="translate(3,4)"/>
+          <!-- canvas wooden frame -->
+          <rect x="32" y="36" width="136" height="164" rx="4" fill="#8B6B4A"/>
+          <rect x="38" y="42" width="124" height="152" rx="2" fill="#7A5E3C"/>
+          <!-- canvas image area -->
+          <rect x="40" y="44" width="120" height="148" fill="url(#sky4)"/>
+          <!-- Sky -->
+          <rect x="40" y="44" width="120" height="72" fill="url(#sky4)"/>
+          <!-- Sun -->
+          <circle cx="100" cy="80" r="22" fill="rgba(255,200,60,0.4)"/>
+          <circle cx="100" cy="80" r="15" fill="rgba(255,180,40,0.75)"/>
+          <!-- Sun rays -->
+          <line x1="100" y1="58" x2="100" y2="52" stroke="rgba(255,200,60,0.5)" stroke-width="2"/>
+          <line x1="114" y1="66" x2="118" y2="62" stroke="rgba(255,200,60,0.5)" stroke-width="2"/>
+          <line x1="122" y1="80" x2="128" y2="80" stroke="rgba(255,200,60,0.5)" stroke-width="2"/>
+          <line x1="86" y1="66" x2="82" y2="62" stroke="rgba(255,200,60,0.5)" stroke-width="2"/>
+          <line x1="78" y1="80" x2="72" y2="80" stroke="rgba(255,200,60,0.5)" stroke-width="2"/>
+          <!-- Ocean -->
+          <rect x="40" y="116" width="120" height="76" fill="url(#ocean4)"/>
+          <!-- Horizon line -->
+          <rect x="40" y="113" width="120" height="6" fill="rgba(200,230,240,0.6)"/>
+          <!-- Wave details -->
+          <path d="M40 135 Q55 130 70 135 Q85 140 100 135 Q115 130 130 135 Q145 140 160 135" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+          <path d="M40 150 Q60 144 80 150 Q100 156 120 150 Q140 144 160 150" stroke="rgba(255,255,255,0.35)" stroke-width="1.2" fill="none"/>
+          <path d="M40 165 Q65 159 90 165 Q115 171 140 165 Q152 161 160 165" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+          <!-- Overwater bungalow / island -->
+          <rect x="76" y="107" width="48" height="14" rx="2" fill="#C8A868"/>
+          <polygon points="72,107 100,92 128,107" fill="#A8884A"/>
+          <rect x="86" y="107" width="8" height="14" fill="#8A6A30"/>
+          <rect x="106" y="107" width="8" height="14" fill="#8A6A30"/>
+          <!-- reflection in water -->
+          <rect x="88" y="126" width="24" height="20" rx="2" fill="rgba(200,168,104,0.3)" transform="scale(1,-1) translate(0,-262)"/>
+          <!-- small dhoni boat -->
+          <path d="M52 128 Q65 122 78 128 L76 134 L54 134 Z" fill="#5A4030" opacity="0.8"/>
+          <line x1="65" y1="122" x2="65" y2="112" stroke="#3A2818" stroke-width="1.5"/>
+          <path d="M65 113 L78 118 L65 120 Z" fill="rgba(245,241,235,0.8)"/>
+          <!-- Canvas texture overlay -->
+          <rect x="40" y="44" width="120" height="148" fill="url(#wall4)" opacity="0.04"/>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Canvas Wall Print</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">CANVAS PRINTS</text>
+        </svg>
+      </div>
+
+      <!-- 5. Authentic Dhivehi Souvenirs -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2A6680"/>
+              <stop offset="50%" stop-color="#1A5070"/>
+              <stop offset="100%" stop-color="#0E3A58"/>
+            </linearGradient>
+            <linearGradient id="water5" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#48B8D0"/>
+              <stop offset="100%" stop-color="#2888A8"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg5)"/>
+          <!-- Subtle pattern overlay – traditional Maldivian geometric -->
+          <pattern id="dhivehi-pat" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect width="20" height="20" fill="none"/>
+            <path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="rgba(184,201,214,0.1)" stroke-width="0.8"/>
+            <circle cx="10" cy="10" r="2" fill="rgba(184,201,214,0.08)"/>
+          </pattern>
+          <rect width="200" height="270" fill="url(#dhivehi-pat)"/>
+          <!-- Starry dots -->
+          <circle cx="28" cy="32" r="1.5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="172" cy="20" r="1" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="155" cy="45" r="1.5" fill="rgba(255,255,255,0.6)"/>
+          <circle cx="40" cy="55" r="1" fill="rgba(255,255,255,0.35)"/>
+          <!-- Dhoni (traditional boat) – main centerpiece -->
+          <path d="M30 148 Q100 120 170 148 L165 170 Q100 158 35 170 Z" fill="#8B5E3C"/>
+          <path d="M35 148 Q100 124 165 148" stroke="#A07050" stroke-width="2" fill="none"/>
+          <!-- dhoni hull detail -->
+          <path d="M35 155 Q100 144 165 155" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" fill="none"/>
+          <!-- Mast and sail -->
+          <line x1="95" y1="76" x2="100" y2="150" stroke="#5A3820" stroke-width="3"/>
+          <line x1="95" y1="76" x2="60" y2="90" stroke="#4A2E18" stroke-width="1.5"/>
+          <!-- Main sail -->
+          <path d="M100 80 Q115 100 100 148 Q105 115 130 95 Z" fill="rgba(245,241,235,0.88)"/>
+          <!-- Sail detail lines -->
+          <line x1="103" y1="95" x2="120" y2="98" stroke="rgba(184,149,106,0.4)" stroke-width="0.8"/>
+          <line x1="104" y1="110" x2="118" y2="112" stroke="rgba(184,149,106,0.3)" stroke-width="0.8"/>
+          <!-- Lateen (traditional Dhivehi sail shape) -->
+          <path d="M100 80 Q88 96 100 148 Q90 120 72 105 Z" fill="rgba(220,210,196,0.7)"/>
+          <!-- Traditional mat (thaavali) pattern item -->
+          <rect x="38" y="174" width="50" height="36" rx="3" fill="#C8A060" transform="rotate(-3 63 192)"/>
+          <rect x="40" y="176" width="46" height="32" rx="2" fill="#D4AC6A" transform="rotate(-3 63 192)"/>
+          <!-- mat woven pattern -->
+          <line x1="44" y1="178" x2="44" y2="206" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="50" y1="178" x2="50" y2="206" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="56" y1="178" x2="56" y2="206" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="62" y1="178" x2="62" y2="206" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="68" y1="178" x2="68" y2="206" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="44" y1="184" x2="82" y2="184" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="44" y1="192" x2="82" y2="192" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <line x1="44" y1="200" x2="82" y2="200" stroke="rgba(100,60,20,0.3)" stroke-width="1" transform="rotate(-3 63 192)"/>
+          <!-- Lacquerwork box (liyaa) -->
+          <rect x="108" y="176" width="54" height="38" rx="5" fill="#8B1A1A" transform="rotate(4 135 195)"/>
+          <rect x="110" y="178" width="50" height="34" rx="4" fill="#A02020" transform="rotate(4 135 195)"/>
+          <!-- lacquer gold pattern -->
+          <circle cx="135" cy="195" r="10" fill="none" stroke="#F0C040" stroke-width="1.5" transform="rotate(4 135 195)"/>
+          <circle cx="135" cy="195" r="5" fill="rgba(240,192,64,0.3)" transform="rotate(4 135 195)"/>
+          <path d="M125 195 Q135 185 145 195 Q135 205 125 195" fill="rgba(240,192,64,0.25)" transform="rotate(4 135 195)"/>
+          <!-- coral piece -->
+          <text x="85" y="215" font-size="18" opacity="0.9">🐚</text>
+          <!-- Flag of Maldives -->
+          <rect x="136" y="68" width="32" height="22" rx="2" fill="#D41C24"/>
+          <rect x="138" y="70" width="28" height="18" rx="1" fill="#006633"/>
+          <ellipse cx="152" cy="79" rx="6" ry="6" fill="white"/>
+          <ellipse cx="155" cy="79" rx="5" ry="6" fill="#006633"/>
+          <line x1="134" y1="66" x2="134" y2="120" stroke="#5A3820" stroke-width="1.5"/>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(14,58,88,0.88)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Authentic Dhivehi</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MALDIVIAN SOUVENIRS</text>
+        </svg>
+      </div>
+
+      <!-- 6. Travel Memory Set (Gift Box) -->
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E8E0D4"/>
+              <stop offset="100%" stop-color="#D4C8B8"/>
+            </linearGradient>
+            <linearGradient id="box6" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2E2E2E"/>
+              <stop offset="100%" stop-color="#1A1A1A"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg6)"/>
+          <ellipse cx="100" cy="135" rx="80" ry="60" fill="rgba(255,255,255,0.2)"/>
+          <!-- Gift box shadow -->
+          <ellipse cx="100" cy="206" rx="60" ry="8" fill="rgba(0,0,0,0.1)"/>
+          <!-- Gift box lid -->
+          <rect x="34" y="90" width="132" height="28" rx="5" fill="url(#box6)"/>
+          <rect x="36" y="92" width="128" height="24" rx="4" fill="#383838"/>
+          <!-- Box body -->
+          <rect x="38" y="116" width="124" height="88" rx="4" fill="#2E2E2E"/>
+          <rect x="40" y="118" width="120" height="84" rx="3" fill="#363636"/>
+          <!-- ribbon vertical -->
+          <rect x="94" y="90" width="12" height="114" fill="#B8956A" opacity="0.9"/>
+          <rect x="96" y="90" width="8" height="114" fill="#C9A478"/>
+          <!-- ribbon horizontal on lid -->
+          <rect x="34" y="98" width="132" height="12" fill="#B8956A" opacity="0.85"/>
+          <rect x="34" y="100" width="132" height="8" fill="#C9A478"/>
+          <!-- Gold bow -->
+          <!-- left loop -->
+          <path d="M100 90 Q74 74 68 80 Q62 88 80 92 Q92 90 100 90" fill="#B8956A"/>
+          <path d="M100 90 Q76 76 72 82 Q68 88 82 91 Q93 90 100 90" fill="#C9A478"/>
+          <!-- right loop -->
+          <path d="M100 90 Q126 74 132 80 Q138 88 120 92 Q108 90 100 90" fill="#B8956A"/>
+          <path d="M100 90 Q124 76 128 82 Q132 88 118 91 Q107 90 100 90" fill="#C9A478"/>
+          <!-- knot -->
+          <circle cx="100" cy="90" r="7" fill="#D4A868"/>
+          <circle cx="100" cy="90" r="4" fill="#C9A060"/>
+          <!-- ribbons hanging down -->
+          <path d="M94 204 Q86 220 80 228" stroke="#B8956A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M106 204 Q114 220 120 228" stroke="#B8956A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Items peeking out of box -->
+          <!-- Mini photo album corner peeking -->
+          <rect x="50" y="108" width="28" height="18" rx="3" fill="#5A4030" transform="rotate(-8 64 117)"/>
+          <rect x="52" y="110" width="24" height="14" rx="2" fill="#6A5040" transform="rotate(-8 64 117)"/>
+          <!-- Canvas roll peeking -->
+          <ellipse cx="145" cy="110" rx="10" ry="12" fill="#C9B8A0" transform="rotate(10 145 110)"/>
+          <ellipse cx="145" cy="110" rx="6" ry="8" fill="#D9C8B0" transform="rotate(10 145 110)"/>
+          <!-- travel tag -->
+          <rect x="56" y="136" width="36" height="50" rx="4" fill="#F5F1EB" transform="rotate(-5 74 161)"/>
+          <circle cx="74" cy="140" r="3" fill="#E8E0D8" transform="rotate(-5 74 161)"/>
+          <rect x="58" y="145" width="32" height="2" rx="1" fill="rgba(46,46,46,0.15)" transform="rotate(-5 74 161)"/>
+          <rect x="58" y="151" width="28" height="2" rx="1" fill="rgba(46,46,46,0.1)" transform="rotate(-5 74 161)"/>
+          <text x="68" y="168" font-size="14" transform="rotate(-5 74 168)">✈️</text>
+          <!-- map print peeking from right side -->
+          <rect x="116" y="138" width="32" height="44" rx="3" fill="#EDE8D8" transform="rotate(6 132 160)"/>
+          <path d="M120 148 Q128 143 136 148 Q130 155 120 148" fill="rgba(184,201,214,0.5)" transform="rotate(6 132 160)"/>
+          <path d="M118 158 L122 162 L130 154 L138 165 L142 158" stroke="rgba(184,149,106,0.5)" stroke-width="1.2" fill="none" transform="rotate(6 132 160)"/>
+          <circle cx="130" cy="162" r="3" fill="rgba(184,149,106,0.4)" transform="rotate(6 132 160)"/>
+          <!-- gold tissue paper texture inside -->
+          <path d="M40 145 Q60 138 80 145 Q100 152 120 145 Q140 138 160 145" stroke="rgba(220,200,150,0.25)" stroke-width="8" fill="none"/>
+          <!-- Label -->
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Travel Memory Set</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8956A" letter-spacing="2">GIFT COLLECTIONS</text>
+        </svg>
+      </div>
+
+      <!-- ── DUPLICATE SET for seamless infinite scroll ── -->
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg1b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#EDE6DB"/><stop offset="100%" stop-color="#D9CFC2"/>
+            </linearGradient>
+            <linearGradient id="page1b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FDFAF6"/><stop offset="100%" stop-color="#F0EBE3"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg1b)"/>
+          <ellipse cx="160" cy="40" rx="70" ry="60" fill="rgba(255,255,255,0.18)"/>
+          <rect x="28" y="50" width="144" height="160" rx="6" fill="#2E2E2E" opacity="0.9"/>
+          <rect x="28" y="50" width="18" height="160" rx="4" fill="#1a1a1a"/>
+          <line x1="36" y1="68" x2="36" y2="200" stroke="#B8956A" stroke-width="1" opacity="0.6"/>
+          <rect x="46" y="56" width="58" height="148" fill="url(#page1b)" rx="2"/>
+          <rect x="106" y="56" width="58" height="148" fill="url(#page1b)" rx="2"/>
+          <rect x="101" y="56" width="8" height="148" fill="rgba(46,46,46,0.08)"/>
+          <rect x="52" y="66" width="46" height="34" rx="3" fill="#B8C9D6" opacity="0.9"/>
+          <rect x="54" y="68" width="42" height="30" rx="2" fill="#9BB5C6"/>
+          <rect x="54" y="83" width="42" height="15" rx="1" fill="#7BAFC4"/>
+          <ellipse cx="75" cy="83" rx="10" ry="6" fill="#E8F0F5" opacity="0.7"/>
+          <rect x="52" y="106" width="22" height="30" rx="3" fill="#B8956A" opacity="0.8"/>
+          <rect x="54" y="108" width="18" height="26" rx="2" fill="#C9A478"/>
+          <text x="62" y="124" font-size="11" fill="rgba(255,255,255,0.8)" font-family="serif">♥</text>
+          <rect x="78" y="106" width="20" height="30" rx="3" fill="#D9CFC2"/>
+          <rect x="80" y="108" width="16" height="26" rx="2" fill="#C9BFB4"/>
+          <rect x="52" y="141" width="46" height="12" rx="2" fill="rgba(46,46,46,0.06)"/>
+          <rect x="52" y="156" width="30" height="3" rx="1" fill="rgba(46,46,46,0.08)"/>
+          <rect x="112" y="66" width="46" height="52" rx="3" fill="#D4C5B2" opacity="0.9"/>
+          <rect x="114" y="68" width="42" height="48" rx="2" fill="#C9B8A0"/>
+          <ellipse cx="130" cy="80" rx="8" ry="8" fill="#8A7A6A"/>
+          <ellipse cx="148" cy="82" rx="7" ry="7" fill="#7A6A5A"/>
+          <rect x="124" y="86" width="12" height="22" rx="3" fill="#8A7A6A"/>
+          <rect x="141" y="88" width="10" height="20" rx="3" fill="#7A6A5A"/>
+          <rect x="114" y="124" width="22" height="22" rx="3" fill="#B8C9D6" opacity="0.7"/>
+          <text x="120" y="138" font-size="10" fill="#7A9BB0">🏖</text>
+          <rect x="138" y="124" width="20" height="22" rx="3" fill="#E8D5C0" opacity="0.8"/>
+          <rect x="162" y="50" width="6" height="20" fill="#B8956A"/>
+          <polygon points="162,70 168,70 165,76" fill="#B8956A"/>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Photo Album</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MEMORY BOOKS</text>
+        </svg>
+      </div>
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg2b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F0E8E0"/><stop offset="100%" stop-color="#E0D4C8"/>
+            </linearGradient>
+            <linearGradient id="sunset2b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F4A060"/><stop offset="40%" stop-color="#E8756A"/><stop offset="100%" stop-color="#7AB5C8"/>
+            </linearGradient>
+            <linearGradient id="wood2b" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#8B6B4A"/><stop offset="50%" stop-color="#A07850"/><stop offset="100%" stop-color="#8B6B4A"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg2b)"/>
+          <ellipse cx="100" cy="120" rx="80" ry="70" fill="rgba(255,240,220,0.4)"/>
+          <rect x="30" y="38" width="140" height="162" rx="8" fill="url(#wood2b)"/>
+          <rect x="38" y="46" width="124" height="146" rx="4" fill="#7A5E3C"/>
+          <rect x="42" y="50" width="116" height="138" rx="2" fill="#F5F1EB"/>
+          <rect x="50" y="58" width="100" height="112" rx="2" fill="url(#sunset2b)"/>
+          <path d="M50 148 Q65 142 80 148 Q95 154 110 148 Q125 142 140 148 Q150 152 150 158 L50 158 Z" fill="rgba(100,180,210,0.6)"/>
+          <path d="M50 156 Q70 150 90 156 Q110 162 130 156 Q142 152 150 160 L50 160 Z" fill="rgba(80,160,200,0.8)"/>
+          <circle cx="100" cy="90" r="20" fill="rgba(255,200,100,0.35)"/>
+          <circle cx="100" cy="92" r="14" fill="rgba(255,180,60,0.7)"/>
+          <ellipse cx="82" cy="136" rx="6" ry="6" fill="#3A2A1A"/>
+          <rect x="77" y="140" width="9" height="18" rx="3" fill="#3A2A1A"/>
+          <ellipse cx="96" cy="138" rx="5" ry="5" fill="#2E1E10"/>
+          <rect x="91" y="142" width="8" height="16" rx="3" fill="#2E1E10"/>
+          <path d="M86 150 Q91 153 91 148" stroke="#4A3020" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="130" y1="160" x2="126" y2="110" stroke="#3A2A1A" stroke-width="3"/>
+          <path d="M126 112 Q115 100 108 108 Q120 106 126 114" fill="#2A4A1A"/>
+          <path d="M126 112 Q138 98 145 105 Q133 106 126 114" fill="#2A4A1A"/>
+          <text x="100" y="185" text-anchor="middle" font-family="Georgia, serif" font-size="7.5" fill="#A07850" font-style="italic">Forever &amp; Always</text>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Honeymoon Frame</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8956A" letter-spacing="2">ENGRAVED FRAMES</text>
+        </svg>
+      </div>
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg3b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F0F4F8"/><stop offset="100%" stop-color="#DDE8F0"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg3b)"/>
+          <circle cx="20" cy="25" r="5" fill="#F4A060" opacity="0.7"/>
+          <circle cx="175" cy="18" r="4" fill="#B8C9D6" opacity="0.8"/>
+          <circle cx="155" cy="220" r="6" fill="#F9C84A" opacity="0.6"/>
+          <circle cx="18" cy="210" r="4" fill="#B8956A" opacity="0.5"/>
+          <rect x="28" y="42" width="144" height="170" rx="10" fill="#4A8FBF"/>
+          <rect x="30" y="44" width="140" height="166" rx="9" fill="#5A9FD0" opacity="0.4"/>
+          <rect x="40" y="54" width="120" height="44" rx="6" fill="rgba(255,255,255,0.25)"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="white" font-style="italic">My First Years</text>
+          <text x="100" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.8)" letter-spacing="2">MEMORY ALBUM</text>
+          <text x="100" y="112" text-anchor="middle" font-size="22">⭐</text>
+          <rect x="44" y="118" width="44" height="52" rx="3" fill="white" transform="rotate(-6 66 144)"/>
+          <rect x="47" y="121" width="38" height="34" rx="2" fill="#F4D0A8" transform="rotate(-6 66 138)"/>
+          <ellipse cx="59" cy="133" rx="6" ry="8" fill="#E8B888" transform="rotate(-6 66 138)"/>
+          <ellipse cx="72" cy="131" rx="5" ry="7" fill="#E8B888" transform="rotate(-6 66 138)"/>
+          <rect x="110" y="122" width="44" height="52" rx="3" fill="white" transform="rotate(8 132 148)"/>
+          <rect x="113" y="125" width="38" height="34" rx="2" fill="#C8E0D0" transform="rotate(8 132 142)"/>
+          <text x="122" y="142" font-size="14" transform="rotate(8 132 142)">🌙</text>
+          <line x1="100" y1="106" x2="100" y2="212" stroke="#F9C84A" stroke-width="3" opacity="0.7"/>
+          <rect x="170" y="52" width="6" height="158" rx="2" fill="#E8E4DE"/>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Kids Memory Album</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MEMORY BOOKS</text>
+        </svg>
+      </div>
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wall4b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#EDE8E2"/><stop offset="100%" stop-color="#E0DCD4"/>
+            </linearGradient>
+            <linearGradient id="ocean4b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#C8E8F4"/><stop offset="30%" stop-color="#88C8E0"/>
+              <stop offset="70%" stop-color="#48A8CC"/><stop offset="100%" stop-color="#2888A8"/>
+            </linearGradient>
+            <linearGradient id="sky4b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F8E8C8"/><stop offset="60%" stop-color="#F4C080"/><stop offset="100%" stop-color="#E89060"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#wall4b)"/>
+          <ellipse cx="100" cy="210" rx="70" ry="6" fill="rgba(0,0,0,0.08)"/>
+          <rect x="33" y="38" width="134" height="162" rx="3" fill="rgba(0,0,0,0.12)" transform="translate(3,4)"/>
+          <rect x="32" y="36" width="136" height="164" rx="4" fill="#8B6B4A"/>
+          <rect x="38" y="42" width="124" height="152" rx="2" fill="#7A5E3C"/>
+          <rect x="40" y="44" width="120" height="148" fill="url(#sky4b)"/>
+          <rect x="40" y="44" width="120" height="72" fill="url(#sky4b)"/>
+          <circle cx="100" cy="80" r="22" fill="rgba(255,200,60,0.4)"/>
+          <circle cx="100" cy="80" r="15" fill="rgba(255,180,40,0.75)"/>
+          <rect x="40" y="116" width="120" height="76" fill="url(#ocean4b)"/>
+          <rect x="40" y="113" width="120" height="6" fill="rgba(200,230,240,0.6)"/>
+          <path d="M40 135 Q55 130 70 135 Q85 140 100 135 Q115 130 130 135 Q145 140 160 135" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+          <path d="M40 150 Q60 144 80 150 Q100 156 120 150 Q140 144 160 150" stroke="rgba(255,255,255,0.35)" stroke-width="1.2" fill="none"/>
+          <rect x="76" y="107" width="48" height="14" rx="2" fill="#C8A868"/>
+          <polygon points="72,107 100,92 128,107" fill="#A8884A"/>
+          <path d="M52 128 Q65 122 78 128 L76 134 L54 134 Z" fill="#5A4030" opacity="0.8"/>
+          <line x1="65" y1="122" x2="65" y2="112" stroke="#3A2818" stroke-width="1.5"/>
+          <path d="M65 113 L78 118 L65 120 Z" fill="rgba(245,241,235,0.8)"/>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Canvas Wall Print</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">CANVAS PRINTS</text>
+        </svg>
+      </div>
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg5b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2A6680"/><stop offset="50%" stop-color="#1A5070"/><stop offset="100%" stop-color="#0E3A58"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg5b)"/>
+          <pattern id="dhivehi-pat2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="rgba(184,201,214,0.1)" stroke-width="0.8"/>
+          </pattern>
+          <rect width="200" height="270" fill="url(#dhivehi-pat2)"/>
+          <circle cx="28" cy="32" r="1.5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="172" cy="20" r="1" fill="rgba(255,255,255,0.4)"/>
+          <path d="M30 148 Q100 120 170 148 L165 170 Q100 158 35 170 Z" fill="#8B5E3C"/>
+          <line x1="95" y1="76" x2="100" y2="150" stroke="#5A3820" stroke-width="3"/>
+          <path d="M100 80 Q115 100 100 148 Q105 115 130 95 Z" fill="rgba(245,241,235,0.88)"/>
+          <path d="M100 80 Q88 96 100 148 Q90 120 72 105 Z" fill="rgba(220,210,196,0.7)"/>
+          <rect x="38" y="174" width="50" height="36" rx="3" fill="#C8A060" transform="rotate(-3 63 192)"/>
+          <rect x="40" y="176" width="46" height="32" rx="2" fill="#D4AC6A" transform="rotate(-3 63 192)"/>
+          <rect x="108" y="176" width="54" height="38" rx="5" fill="#8B1A1A" transform="rotate(4 135 195)"/>
+          <rect x="110" y="178" width="50" height="34" rx="4" fill="#A02020" transform="rotate(4 135 195)"/>
+          <circle cx="135" cy="195" r="10" fill="none" stroke="#F0C040" stroke-width="1.5" transform="rotate(4 135 195)"/>
+          <rect x="136" y="68" width="32" height="22" rx="2" fill="#D41C24"/>
+          <rect x="138" y="70" width="28" height="18" rx="1" fill="#006633"/>
+          <ellipse cx="152" cy="79" rx="6" ry="6" fill="white"/>
+          <ellipse cx="155" cy="79" rx="5" ry="6" fill="#006633"/>
+          <line x1="134" y1="66" x2="134" y2="120" stroke="#5A3820" stroke-width="1.5"/>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(14,58,88,0.88)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Authentic Dhivehi</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8C9D6" letter-spacing="2">MALDIVIAN SOUVENIRS</text>
+        </svg>
+      </div>
+
+      <div class="photo-card">
+        <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg6b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E8E0D4"/><stop offset="100%" stop-color="#D4C8B8"/>
+            </linearGradient>
+            <linearGradient id="box6b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2E2E2E"/><stop offset="100%" stop-color="#1A1A1A"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="270" fill="url(#bg6b)"/>
+          <ellipse cx="100" cy="135" rx="80" ry="60" fill="rgba(255,255,255,0.2)"/>
+          <ellipse cx="100" cy="206" rx="60" ry="8" fill="rgba(0,0,0,0.1)"/>
+          <rect x="34" y="90" width="132" height="28" rx="5" fill="url(#box6b)"/>
+          <rect x="36" y="92" width="128" height="24" rx="4" fill="#383838"/>
+          <rect x="38" y="116" width="124" height="88" rx="4" fill="#2E2E2E"/>
+          <rect x="40" y="118" width="120" height="84" rx="3" fill="#363636"/>
+          <rect x="94" y="90" width="12" height="114" fill="#B8956A" opacity="0.9"/>
+          <rect x="96" y="90" width="8" height="114" fill="#C9A478"/>
+          <rect x="34" y="98" width="132" height="12" fill="#B8956A" opacity="0.85"/>
+          <rect x="34" y="100" width="132" height="8" fill="#C9A478"/>
+          <path d="M100 90 Q74 74 68 80 Q62 88 80 92 Q92 90 100 90" fill="#B8956A"/>
+          <path d="M100 90 Q126 74 132 80 Q138 88 120 92 Q108 90 100 90" fill="#B8956A"/>
+          <circle cx="100" cy="90" r="7" fill="#D4A868"/>
+          <circle cx="100" cy="90" r="4" fill="#C9A060"/>
+          <path d="M94 204 Q86 220 80 228" stroke="#B8956A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M106 204 Q114 220 120 228" stroke="#B8956A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="0" y="228" width="200" height="42" fill="rgba(46,46,46,0.72)"/>
+          <text x="100" y="247" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#F5F1EB" font-style="italic">Travel Memory Set</text>
+          <text x="100" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#B8956A" letter-spacing="2">GIFT COLLECTIONS</text>
+        </svg>
+      </div>
+
+    </div><!-- /strip-track -->
+  </div><!-- /strip-wrap -->
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="content">
+
+    <!-- PRODUCTS GRID -->
+    <div class="products-section">
+      <div class="products-title">What we make</div>
+      <div class="products-subtitle">Curated collections · Launching soon</div>
+      <div class="products-grid">
+
+        <!-- Memory Books -->
+        <div class="product-card">
+          <div class="product-thumb">
+            <svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="180" height="110" fill="#EDE6DB"/>
+              <ellipse cx="140" cy="20" rx="50" ry="40" fill="rgba(255,255,255,0.2)"/>
+              <rect x="20" y="18" width="140" height="78" rx="5" fill="#2E2E2E"/>
+              <rect x="20" y="18" width="16" height="78" rx="4" fill="#1a1a1a"/>
+              <line x1="28" y1="30" x2="28" y2="90" stroke="#B8956A" stroke-width="1" opacity="0.6"/>
+              <rect x="36" y="22" width="56" height="70" fill="#FDFAF6" rx="2"/>
+              <rect x="94" y="22" width="56" height="70" fill="#F9F7F4" rx="2"/>
+              <rect x="90" y="22" width="8" height="70" fill="rgba(46,46,46,0.07)"/>
+              <rect x="41" y="28" width="44" height="28" rx="2" fill="#B8C9D6" opacity="0.85"/>
+              <rect x="43" y="30" width="40" height="24" rx="1" fill="#9BB5C6"/>
+              <rect x="43" y="40" width="40" height="14" rx="0" fill="#7BAFC4"/>
+              <rect x="41" y="62" width="20" height="22" rx="2" fill="#B8956A" opacity="0.8"/>
+              <text x="49" y="76" font-size="10" fill="rgba(255,255,255,0.8)" font-family="serif">♥</text>
+              <rect x="65" y="62" width="18" height="22" rx="2" fill="#D9CFC2"/>
+              <rect x="99" y="28" width="44" height="38" rx="2" fill="#D4C5B2"/>
+              <rect x="101" y="30" width="40" height="34" rx="1" fill="#C9B8A0"/>
+              <ellipse cx="113" cy="40" rx="7" ry="7" fill="#8A7A6A"/>
+              <rect x="159" y="18" width="5" height="16" fill="#B8956A"/>
+              <polygon points="159,34 164,34 161.5,39" fill="#B8956A"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Memory Books</div>
+          </div>
+        </div>
+
+        <!-- Canvas Prints -->
+        <div class="product-card">
+          <div class="product-thumb">
+            <svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pwall" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#EDE8E2"/><stop offset="100%" stop-color="#DDD8D0"/>
+                </linearGradient>
+                <linearGradient id="pocean" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#C8E8F4"/><stop offset="60%" stop-color="#48A8CC"/><stop offset="100%" stop-color="#2888A8"/>
+                </linearGradient>
+                <linearGradient id="psky" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#F8E8C8"/><stop offset="100%" stop-color="#E89060"/>
+                </linearGradient>
+              </defs>
+              <rect width="180" height="110" fill="url(#pwall)"/>
+              <ellipse cx="90" cy="102" rx="60" ry="5" fill="rgba(0,0,0,0.07)"/>
+              <rect x="25" y="10" width="130" height="80" rx="3" fill="rgba(0,0,0,0.1)" transform="translate(2,3)"/>
+              <rect x="24" y="8" width="132" height="82" rx="4" fill="#8B6B4A"/>
+              <rect x="30" y="14" width="120" height="70" rx="2" fill="#7A5E3C"/>
+              <rect x="32" y="16" width="116" height="66" fill="url(#psky)"/>
+              <rect x="32" y="44" width="116" height="38" fill="url(#pocean)"/>
+              <circle cx="90" cy="36" r="14" fill="rgba(255,200,60,0.4)"/>
+              <circle cx="90" cy="36" r="9" fill="rgba(255,180,40,0.75)"/>
+              <path d="M32 55 Q50 50 68 55 Q86 60 104 55 Q122 50 148 55" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none"/>
+              <path d="M32 65 Q58 59 84 65 Q110 71 136 65" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+              <rect x="72" y="42" width="36" height="10" rx="1" fill="#C8A868"/>
+              <polygon points="68,42 90,32 112,42" fill="#A8884A"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Canvas Prints</div>
+          </div>
+        </div>
+
+        <!-- Engraved Frames -->
+        <div class="product-card">
+          <div class="product-thumb">
+            <svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pbg3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F0E8E0"/><stop offset="100%" stop-color="#E0D4C8"/>
+                </linearGradient>
+                <linearGradient id="pwood3" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#8B6B4A"/><stop offset="50%" stop-color="#A07850"/><stop offset="100%" stop-color="#8B6B4A"/>
+                </linearGradient>
+              </defs>
+              <rect width="180" height="110" fill="url(#pbg3)"/>
+              <ellipse cx="90" cy="106" rx="55" ry="4" fill="rgba(0,0,0,0.07)"/>
+              <rect x="20" y="10" width="140" height="86" rx="6" fill="url(#pwood3)"/>
+              <rect x="26" y="16" width="128" height="74" rx="3" fill="#7A5E3C"/>
+              <rect x="30" y="20" width="120" height="66" rx="2" fill="#F5F1EB"/>
+              <rect x="36" y="26" width="108" height="52" rx="1" fill="#E8D4B8" opacity="0.6"/>
+              <!-- couple silhouette -->
+              <ellipse cx="74" cy="40" rx="8" ry="8" fill="#3A2A1A"/>
+              <rect x="68" y="46" width="12" height="22" rx="4" fill="#3A2A1A"/>
+              <ellipse cx="94" cy="42" rx="7" ry="7" fill="#2E1E10"/>
+              <rect x="88" y="48" width="10" height="20" rx="4" fill="#2E1E10"/>
+              <path d="M80 58 Q91 62 91 56" stroke="#4A3020" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- sunset bg -->
+              <rect x="36" y="52" width="108" height="26" rx="1" fill="#E8A860" opacity="0.3"/>
+              <text x="90" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#A07850" font-style="italic">Forever &amp; Always</text>
+              <text x="28" y="22" font-size="9" fill="rgba(255,220,160,0.5)">❧</text>
+              <text x="140" y="22" font-size="9" fill="rgba(255,220,160,0.5)" transform="scale(-1,1) translate(-180,0)">❧</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Engraved Frames</div>
+          </div>
+        </div>
+
+        <!-- Maldivian Souvenirs -->
+        <div class="product-card">
+          <div class="product-thumb">
+            <svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pdhivehi" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2A6680"/><stop offset="100%" stop-color="#0E3A58"/>
+                </linearGradient>
+              </defs>
+              <rect width="180" height="110" fill="url(#pdhivehi)"/>
+              <pattern id="dp2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="rgba(184,201,214,0.12)" stroke-width="0.8"/>
+              </pattern>
+              <rect width="180" height="110" fill="url(#dp2)"/>
+              <!-- Dhoni boat -->
+              <path d="M20 68 Q90 48 160 68 L155 82 Q90 72 25 82 Z" fill="#8B5E3C"/>
+              <line x1="86" y1="28" x2="90" y2="70" stroke="#5A3820" stroke-width="2.5"/>
+              <path d="M90 32 Q102 46 90 70 Q94 53 114 42 Z" fill="rgba(245,241,235,0.88)"/>
+              <path d="M90 32 Q80 46 90 70 Q83 52 66 44 Z" fill="rgba(220,210,196,0.7)"/>
+              <!-- Maldives flag small -->
+              <rect x="120" y="26" width="40" height="26" rx="2" fill="#D41C24"/>
+              <rect x="122" y="28" width="36" height="22" rx="1" fill="#006633"/>
+              <ellipse cx="140" cy="39" rx="7" ry="7" fill="white"/>
+              <ellipse cx="143" cy="39" rx="6" ry="7" fill="#006633"/>
+              <!-- Shell -->
+              <text x="30" y="96" font-size="16" opacity="0.9">🐚</text>
+              <!-- Lacquer box -->
+              <rect x="66" y="82" width="42" height="26" rx="4" fill="#A02020"/>
+              <circle cx="87" cy="95" r="7" fill="none" stroke="#F0C040" stroke-width="1.5"/>
+              <circle cx="87" cy="95" r="3" fill="rgba(240,192,64,0.4)"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Maldivian Souvenirs</div>
+          </div>
+        </div>
+
+        <!-- Kids Memory Albums -->
+        <div class="product-card">
+          <div class="product-thumb">
+            <svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pbg5" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F0F4F8"/><stop offset="100%" stop-color="#DDE8F0"/>
+                </linearGradient>
+              </defs>
+              <rect width="180" height="110" fill="url(#pbg5)"/>
+              <circle cx="18" cy="20" r="6" fill="#F4A060" opacity="0.7"/>
+              <circle cx="165" cy="15" r="5" fill="#B8C9D6" opacity="0.8"/>
+              <circle cx="148" cy="95" r="7" fill="#F9C84A" opacity="0.6"/>
+              <circle cx="14" cy="88" r="5" fill="#B8956A" opacity="0.5"/>
+              <rect x="22" y="15" width="136" height="82" rx="9" fill="#4A8FBF"/>
+              <rect x="38" y="22" width="100" height="36" rx="5" fill="rgba(255,255,255,0.25)"/>
+              <text x="90" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="white" font-style="italic">My First Years</text>
+              <text x="90" y="49" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="rgba(255,255,255,0.8)" letter-spacing="2">MEMORY ALBUM</text>
+              <text x="90" y="72" text-anchor="middle" font-size="18">⭐</text>
+              <!-- polaroid peaking -->
+              <rect x="35" y="60" width="38" height="44" rx="3" fill="white" transform="rotate(-7 54 82)"/>
+              <rect x="38" y="63" width="32" height="28" rx="2" fill="#F4D0A8" transform="rotate(-7 54 79)"/>
+              <ellipse cx="49" cy="71" rx="5" ry="7" fill="#E8B888" transform="rotate(-7 54 79)"/>
+              <ellipse cx="60" cy="69" rx="4" ry="6" fill="#E8B888" transform="rotate(-7 54 79)"/>
+              <rect x="104" y="64" width="38" height="44" rx="3" fill="white" transform="rotate(7 123 86)"/>
+              <rect x="107" y="67" width="32" height="28" rx="2" fill="#C8E0D0" transform="rotate(7 123 83)"/>
+              <text x="116" y="82" font-size="13" transform="rotate(7 123 83)">🌙</text>
+              <line x1="90" y1="65" x2="90" y2="110" stroke="#F9C84A" stroke-width="2.5" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Kids Memory Albums</div>
+          </div>
+        </div>
+
+        <!-- Travel Memory Set — featured full width -->
+        <div class="product-card featured">
+          <div class="product-thumb">
+            <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pfbg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8E0D4"/><stop offset="100%" stop-color="#D4C8B8"/>
+                </linearGradient>
+                <linearGradient id="pfbox" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2E2E2E"/><stop offset="100%" stop-color="#1A1A1A"/>
+                </linearGradient>
+              </defs>
+              <rect width="140" height="120" fill="url(#pfbg)"/>
+              <ellipse cx="70" cy="135" rx="50" ry="6" fill="rgba(0,0,0,0.08)"/>
+              <rect x="14" y="40" width="112" height="22" rx="4" fill="url(#pfbox)"/>
+              <rect x="16" y="42" width="108" height="18" rx="3" fill="#383838"/>
+              <rect x="16" y="60" width="108" height="56" rx="3" fill="#2E2E2E"/>
+              <rect x="18" y="62" width="104" height="52" rx="2" fill="#363636"/>
+              <rect x="64" y="40" width="12" height="78" fill="#B8956A" opacity="0.9"/>
+              <rect x="66" y="40" width="8" height="78" fill="#C9A478"/>
+              <rect x="14" y="48" width="112" height="10" fill="#B8956A" opacity="0.85"/>
+              <rect x="14" y="50" width="112" height="6" fill="#C9A478"/>
+              <!-- bow -->
+              <path d="M70 40 Q50 28 44 33 Q38 40 55 44 Q64 42 70 40" fill="#B8956A"/>
+              <path d="M70 40 Q90 28 96 33 Q102 40 85 44 Q76 42 70 40" fill="#B8956A"/>
+              <circle cx="70" cy="40" r="6" fill="#D4A868"/>
+              <circle cx="70" cy="40" r="3" fill="#C9A060"/>
+              <!-- ribbon tails -->
+              <path d="M64 116 Q58 124 54 130" stroke="#B8956A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M76 116 Q82 124 86 130" stroke="#B8956A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- peaking items -->
+              <text x="25" y="86" font-size="13">✈️</text>
+              <text x="90" y="88" font-size="13">📖</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Travel Memory Set</div>
+            <div class="product-desc">Book + Canvas + Gift Packed</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SURVEY -->
+    <div class="survey-section">
+      <div class="survey-offer">✦ First 10 customers — 20% off</div>
+      <div class="survey-title">Help us shape what we make</div>
+      <div class="survey-sub">
+        Tell us what you'd love to see.<br>Takes just 2 minutes.
+      </div>
+      <!-- UPDATE href to your survey URL once hosted -->
+      <a href="/survey" class="survey-btn" target="_blank" rel="noopener">
+        Take the Survey
+        <span class="survey-arrow">→</span>
+      </a>
+      <div class="survey-note">Your answers shape our first collection.</div>
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="social-section">
+      <div class="social-eyebrow">Coming soon</div>
+      <div class="social-title">Follow us &amp; stay tuned</div>
+      <div class="social-sub">
+        We're opening soon. Follow us for the first look,<br>launch offers, and behind-the-scenes updates.
+      </div>
+      <div class="social-btns">
+        <a href="https://instagram.com/veeaastudio" class="social-btn instagram" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          @veeaastudio
+        </a>
+        <a href="https://facebook.com/VeeaaStudio" class="social-btn facebook" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Veeaa Studio
+        </a>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/9609115583?text=Hi%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20Veeaa%20Studio!" class="wa-btn" target="_blank" rel="noopener">
+      <span>💬</span>
+      Chat with us on WhatsApp · +960 911-5583
+    </a>
+
+  </div><!-- /content -->
 
 </main>
 
 <footer>
   <div class="footer-text">
-    Veeaa Private Limited &nbsp;·&nbsp; Male', Maldives &nbsp;·&nbsp; Reg. C16722024<br>
-    <a href="mailto:faathik@icloud.com">faathik@icloud.com</a> &nbsp;·&nbsp;
-    <a href="https://wa.me/9609115583">+960 911-5583</a> &nbsp;·&nbsp;
+    Veeaa Private Limited &nbsp;·&nbsp; Male', Maldives &nbsp;·&nbsp; Reg. C16722024
+    <br>
+    <a href="mailto:sales@veeaa.com">sales@veeaa.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/9609115583">+960 911-5583</a>
+    &nbsp;·&nbsp;
     <a href="https://instagram.com/veeaastudio">@veeaastudio</a>
   </div>
 </footer>
 
 <div class="bottom-bar"></div>
-
-<script>
-  function handleSignup() {
-    const email = document.getElementById('emailInput').value.trim();
-    if (!email || !email.includes('@')) {
-      document.getElementById('emailInput').style.borderColor = '#e88';
-      document.getElementById('emailInput').focus();
-      return;
-    }
-    const msg = encodeURIComponent(`Hi Veeaa Studio! I'd like to be notified when you launch. My email: ${email}`);
-    window.open(`https://wa.me/9609115583?text=${msg}`, '_blank');
-    document.getElementById('successMsg').style.display = 'block';
-    document.getElementById('emailInput').style.borderColor = '#B8C9D6';
-  }
-  document.getElementById('emailInput').addEventListener('keypress', e => {
-    if (e.key === 'Enter') handleSignup();
-  });
-</script>
+</div><!-- /page-wrap -->
 
 </body>
 </html>
